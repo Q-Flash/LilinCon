@@ -1,0 +1,50 @@
+<ion-view view-title="Health Records">
+  <ion-content class="padding">
+<!--  <div class="bg"> -->
+
+   <div class ="outside">
+
+
+  <style>
+         table, th , td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+         }
+
+         table tr:nth-child(odd) {
+          /*  background-color: #f2f2f2; */
+         }
+
+         table tr:nth-child(even) {
+          /*  background-color: #ffffff; */
+         }
+  </style>
+
+
+  <table border="0">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Injury</th>
+                <th>Expected Recovery date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="injury in injury_details">
+                <td><button class="button icon ion-ios-minus-outline"></button></td>
+                <td>{{injury.player_fname}}</td>
+                <td>{{injury.player_injury}}</td>
+                <td>{{injury.recovery_days}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="#/edithealth" class="button icon-left ion-android-add">Injury Update</a>
+    <!--<button  href="#/editRoster" class="button icon-left ion-android-add">Add Player</button>-->
+  </div>
+
+
+<!--  </div> -->
+  </ion-content>
+</ion-view>

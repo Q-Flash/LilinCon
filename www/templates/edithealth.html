@@ -1,0 +1,65 @@
+<ion-view view-title="Update Injuries" >
+        <ion-content class="padding-top">
+          <div class="list text-center padding">
+          <!--  <i class="icon ion-ios-game-controller-b larger positive"></i> -->
+          </div>
+          <h1> Look out for Potatoes! </h1>
+          <form novalidate="" name="injuryForm" form-manager>
+          <div class="list">
+            <label class="item item-input item-floating-label"
+            ng-class="{ 'has-error' : injuryForm.txtplayerfname.$invalid && injuryForm.$submitted }">
+              <span class="input-label">Player First Name</span>
+              <input name="txtplayerfname" type="text" ng-model="player.player_fname"
+              placeholder="First Name"
+              required>
+            </label>
+            <div class="form-errors" ng-messages="injuryForm.txtplayerfname.$error" ng-if="injuryForm.$submitted">
+              <div class="form-error" ng-message="required"><p style="color:red">This field is required.</p></div>
+            </div>
+
+
+            <label class="item item-input item-floating-label"
+              ng-class="{ 'has-error' : injuryForm.txtplayerfname.$invalid && injuryForm.$submitted }">
+              <span class="input-label">Player Last Name</span>
+              <input name="txtplayerlname" type="text" ng-model="player.player_lname"
+              placeholder="Last Name"
+              required>
+            </label>
+            <div class="form-errors" ng-messages="injuryForm.txtplayerlname.$error" ng-if="injuryForm.$submitted">
+              <div class="form-error" ng-message="required"><p style="color:red">This field is required.</p></div>
+            </div>
+
+          <label class="item item-input item-floating-label"
+          ng-class="{ 'has-error' : injuryForm.txtplayerinjury.$invalid && injuryForm.$submitted }">
+            <span class="input-label">Injury</span>
+            <input name="txtplayerinjury" type="text" ng-model="player.playerinjury"
+            placeholder="Injury"
+            required>
+          </label>
+          <div class="form-errors" ng-messages="injuryForm.txtplayerinjury.$error" ng-if="injuryForm.$submitted">
+            <div class="form-error" ng-message="required"><p style="color:red">This field is required.</p></div>
+          </div>
+
+
+          <label class="item item-input item-floating-label"
+          ng-class="{ 'has-error' : injuryForm.txtrecoverydays.$invalid && injuryForm.$submitted }">
+            <span class="input-label">Recovery Days</span>
+            <input name="txtrecoverydays" type="text" ng-model="player.recoverydays"
+            placeholder="Recovery Days"
+            required>
+          </label>
+          <div class="form-errors" ng-messages="injuryForm.txtrecoverydays.$error" ng-if="injuryForm.$submitted">
+            <div class="form-error" ng-message="required"><p style="color:red">This field is required.</p></div>
+          </div>
+
+
+          </div>
+          <div class="padding-top">
+            <button ng-click="submit()"  class = "button button-block button-calm">
+              Submit
+            </button>
+          </div>
+        </form>
+
+        </ion-content>
+</ion-view>
