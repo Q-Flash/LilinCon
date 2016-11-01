@@ -1,0 +1,40 @@
+
+
+<ion-view view-title="News">
+
+  <div class = "bg">
+  <ion-content class="padding">
+
+
+    <ion-list>
+
+
+    <div class ="outside">
+
+      <ion-item class="list card item-remove-animate  item-icon-right" ng-repeat="item in news" type="item-text-wrap" href="#/tab/chats/{{item.id}}">
+
+        <h2>
+          <div class="text-center"><strong>{{item.name}}</strong></div>
+        </h2>
+        <p>
+          <div class = "text-right">{{item.date_added}}</div>
+        </p>
+
+        <i class="icon ion-chevron-right icon-accessory"></i>
+        <ion-option-button class="button-assertive" ng-click="remove(item)">
+          Hide
+        </ion-option-button>
+
+      </ion-item>
+    </ion-list>
+
+<div class="text-center">
+  <button class="button button-outline button-block button-positive">
+    Show More
+  </button>
+</div>
+</div>
+
+  </ion-content>
+  </div>
+</ion-view>
