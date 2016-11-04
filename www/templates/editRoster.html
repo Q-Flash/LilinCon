@@ -1,7 +1,7 @@
+
 <ion-view view-title="Add New Player" >
         <ion-content class="padding-top">
           <div class="list text-center padding">
-          <!--  <i class="icon ion-ios-game-controller-b larger positive"></i> -->
           </div>
           <h1> Potatoes are always watching </h1>
           <form novalidate="" name="playerForm" form-manager>
@@ -11,11 +11,9 @@
               <span class="input-label">Player First Name</span>
               <input name="txtplayerfname" type="text" ng-model="player.player_fname"
               placeholder="First Name"
-              required>
+              >
             </label>
-            <div class="form-errors" ng-messages="playerForm.txtplayerfname.$error" ng-if="playerForm.$submitted">
-              <div class="form-error" ng-message="required"><p style="color:red">This field is required.</p></div>
-            </div>
+
 
 
             <label class="item item-input item-floating-label"
@@ -23,22 +21,17 @@
               <span class="input-label">Player Last Name</span>
               <input name="txtplayerlname" type="text" ng-model="player.player_lname"
               placeholder="Last Name"
-              required>
+              >
             </label>
-            <div class="form-errors" ng-messages="playerForm.txtplayerlname.$error" ng-if="playerForm.$submitted">
-              <div class="form-error" ng-message="required"><p style="color:red">This field is required.</p></div>
-            </div>
+
 
           <label class="item item-input item-floating-label"
           ng-class="{ 'has-error' : playerForm.txtplayerprole.$invalid && playerForm.$submitted }">
             <span class="input-label">Primary Role</span>
             <input name="txtplayerprole" type="text" ng-model="player.playerprole"
             placeholder="Primary Role"
-            required>
+            >
           </label>
-          <div class="form-errors" ng-messages="playerForm.txtplayerprole.$error" ng-if="playerForm.$submitted">
-            <div class="form-error" ng-message="required"><p style="color:red">This field is required.</p></div>
-          </div>
 
 
           <label class="item item-input item-floating-label"
@@ -46,11 +39,9 @@
             <span class="input-label">Secondary Role</span>
             <input name="txtplayersrole" type="text" ng-model="player.playersrole"
             placeholder="Secondary Role"
-            required>
+            >
           </label>
-          <div class="form-errors" ng-messages="playerForm.txtplayersrole.$error" ng-if="playerForm.$submitted">
-            <div class="form-error" ng-message="required"><p style="color:red">This field is required.</p></div>
-          </div>
+
 
 
           </div>

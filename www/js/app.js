@@ -101,6 +101,12 @@ angular.module('starter', ['ionic','firebase','starter.configs'])
     controller:'editRosterCtrl'
   })
 
+  .state('roster', {
+    url: '/roster',
+    templateUrl: 'templates/roster.html',
+    controller:'RosterCtrl'
+  })
+
   .state('news', {
     url: '/news',
     templateUrl: 'templates/news.html',

@@ -34,3 +34,48 @@ angular.module('starter')
     }
   };
 })
+.factory('Players', function($firebaseObject,CONFIG,$firebaseArray) {
+//  var ref = new Firebase(CONFIG.FIREBASE_DB_URL);
+  var players = firebase.database().ref("Players");
+  var players_array = $firebaseArray(players);
+  var player_details_for_table = [];
+  players_array.$loaded(function(playerInfo){
+    angular.forEach(playerInfo, function (value, key){
+      var displayPlayerInfo = value;
+      var temp_player = {
+        id: key,
+        player_fname: displayPlayerInfo.player_fname,
+        player_lname: displayPlayerInfo.player_lname,
+        player_prole: displayPlayerInfo.player_prole,
+        player_srole: displayPlayerInfo.player_srole,
+
+      };
+      player_details_for_table.push(temp_player);
+    })
+
+  })
+
+  return {
+
+    all: function() {
+      return player_details_for_table;
+    },
+    remove: function(displayPlayerInfo) {
+      player_details_for_table.splice(player_details_for_table.indexOf(displayPlayerInfo), 1);
+      console.log("Remove function happened");
+    },
+    delete_record: function(record){
+      players.child(record.id).remove();
+      console.log("Delete record function happened");
+    },
+    get: function(playerId) {
+      for (var i = 0; i < player_details_for_table.length; i++) {
+        if (player_details_for_table[i].id === parseInt(playerId)) {
+          return player_details_for_table[i];
+        }
+      }
+      return null;
+    }
+  };
+
+})

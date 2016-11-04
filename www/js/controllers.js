@@ -2,10 +2,9 @@
 'Use Strict';
 angular.module('starter')
 .controller('RosterCtrl', function($scope, $location, Players) {
-
   $scope.player_details = Players.all();
 })
-.controller('AdminRosterCtrl', function(Team,Players,$scope) {
+.controller('AdminRosterCtrl', function(Players,$scope) {
   //$scope.team = Team.all();
   $scope.player_details = Players.all();
   $scope.remove_player= function(selected_player){
@@ -21,6 +20,9 @@ angular.module('starter')
   };
 })
 
+.controller('healthController', function($scope) {
+
+})
 .controller('managerController', function($scope) {
 
 })

@@ -1,8 +1,8 @@
 'Use Strict';
-angular.module('starter').controller('editRosterCtrl', function (Utils, $scope, $state, $localStorage, $location,$http,$ionicPopup, $firebaseObject, FURL, Utils) {
-  var ref = new Firebase(FURL);
+angular.module('starter').controller('editRosterCtrl', function ($scope, $state,$http, $firebaseObject) {
+  //var ref = new Firebase(FURL);
 
-  var players = ref.child("Players");
+  var players = firebase.database().ref("Players");
   $scope.player = {
     player_fname: '',
     player_lname: '',
@@ -17,15 +17,12 @@ angular.module('starter').controller('editRosterCtrl', function (Utils, $scope, 
       player_prole: form.txtplayerprole.$viewValue,
       player_srole: form.txtplayersrole.$viewValue
     })
-    //Utils.show("Submitting");
-    //$state.go('/manager');
-    //Utils.hide();
     console.log("Submitting");
 
   }
 })
 
-.directive('formManager1', function($ionicLoading){
+.directive('formManager', function($ionicLoading){
   return{
     restrict: 'A',
     controller: function($scope){
