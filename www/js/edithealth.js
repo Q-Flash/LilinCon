@@ -1,8 +1,8 @@
 'Use Strict';
-angular.module('starter').controller('edithealthCtrl', function (Utils, $scope, $state, $localStorage, $location,$http,$ionicPopup, $firebaseObject, FURL, Utils) {
-  var ref = new Firebase(FURL);
+angular.module('starter').controller('edithealthCtrl', function (Players,$scope,$http,$firebaseObject) {
 
-  var injuries = ref.child("Injuries");
+  var injuries = firebase.database().ref("Players/Injuries");
+  $scope.player_details_inj = Players.all();
   $scope.injury = {
     player_fname: '',
     player_lname: '',

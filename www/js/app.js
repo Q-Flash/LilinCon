@@ -130,7 +130,7 @@ angular.module('starter', ['ionic','firebase','starter.configs'])
   })
   .state('edithealth', {
     url: '/edithealth',
-      templateUrl: 'templates/edithealth.html',
+      templateUrl: 'templates/edithealth2.html',
       controller:'edithealthCtrl'
   })
   .state('budget', {

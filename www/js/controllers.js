@@ -20,7 +20,7 @@ angular.module('starter')
   };
 })
 
-.controller('healthController', function($scope) {
+.controller('healthController', function() {
 
 })
 .controller('managerController', function($scope) {
