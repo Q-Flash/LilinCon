@@ -9,7 +9,8 @@ angular.module('starter')
   $scope.player_details = Players.all();
   $scope.remove_player= function(selected_player){
     Players.delete_record(selected_player);
-    console.log("Maed it to remove_player function");
+    Players.remove(selected_player);
+    console.log("Made it to remove_player function");
   }
 })
 
