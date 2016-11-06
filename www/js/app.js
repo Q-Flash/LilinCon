@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic','firebase','starter.configs'])
+angular.module('starter', ['ionic','firebase','onezone-datepicker','starter.configs'])
 
 .run(function($ionicPlatform,CONFIG) {
   $ionicPlatform.ready(function() {
@@ -92,6 +92,12 @@ angular.module('starter', ['ionic','firebase','starter.configs'])
     controller:'AdminRosterCtrl'
   })
 
+  .state('calendar', {
+    url: '/calendar',
+    templateUrl: 'templates/calendar.html',
+    controller:'calendarCtrl'
+  })
+
   .state('editRoster', {
     cache: false,
     url: '/editRoster',
@@ -144,7 +150,7 @@ angular.module('starter', ['ionic','firebase','starter.configs'])
       controller:'reportController'
   })
 
-    $urlRouterProvider.otherwise('/news');
+    $urlRouterProvider.otherwise('/calendar');
 
 }])
 
