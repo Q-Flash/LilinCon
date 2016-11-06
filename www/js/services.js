@@ -49,12 +49,10 @@ angular.module('starter')
         player_lname: displayPlayerInfo.player_lname,
         player_prole: displayPlayerInfo.player_prole,
         player_srole: displayPlayerInfo.player_srole,
-
       };
-      console.log("unique id:"+ value.player_id);
+      console.log("unique id:"+ playerInfo.key);
       player_details_for_table.push(temp_player);
     })
-
   })
 
   return {
@@ -63,35 +61,37 @@ angular.module('starter')
       return player_details_for_table;
     },
     remove: function(displayPlayerInfo) {
-      //player_details_for_table.splice(player_details_for_table.indexOf(displayPlayerInfo), 1);
+      player_details_for_table.splice(player_details_for_table.indexOf(displayPlayerInfo), 1);
       console.log("Remove function happened");
     },
     delete_record: function(record){
-      var records = firebase.database().ref("Players");
-      var records_array = $firebaseArray(records);
-      records_array.$loaded(function(recordsInfo){
-        angular.forEach(recordsInfo, function (value, key){
-          console.log("Record id:" + record.player_id);
-          console.log("Recordplayer_fname: " + record.player_fname);
-          console.log("Recordplayer_lname: " + record.player_lname);
-          console.log("Recordplayer_prole: " + record.player_prole);
-          console.log("Recordplayer_srole: " + record.player_srole);
-          console.log("Val id:" + value.player_id);
-          if(record.player_id == value.player_id){
+      var teh_key;
+      firebase.database().ref("Players")
+      .orderByChild("player_id")
+      .equalTo(record.player_id)
+      .once("value", function (snapshot) {
+        var key;
+        snapshot.forEach(function (childSnapshot) {
+          key = childSnapshot.key;
+          return true; // Cancel further enumeration.
+        });
 
-          }
-        })
-      })
-      for (var i = 0; i < player_details_for_table.length; i++) {
-        console.log("Keysss:"+player_details_for_table[i].unique_key);
-      }/*
-      records.remove()
+        if (key) {
+          teh_key = key;
+          console.log("Found user: " + key);
+        } else {
+          console.log("User not found.");
+        }
+      });
+      var path = "Players/" + teh_key;
+      console.log(path);
+      firebase.database().ref(path).remove()
         .then(function() {
           console.log("Remove succeeded. 100")
         })
         .catch(function(error) {
           console.log("Remove failed: " + error.message)
-        }); */
+        });
       console.log("Delete record function happened");
     },
     get: function(playerId) {
