@@ -84,24 +84,23 @@ angular.module('starter', ['ionic','firebase','starter.configs'])
         }
       }
     })
-    .state('admin-events', {
-      url: '/admin-events',
-      templateUrl: 'templates/admin-events.html',
-      controller:'eventController'
-    })
-    .state('adminRoster', {
+
+  .state('adminRoster', {
+    cache: false,
     url: '/adminRoster',
     templateUrl: 'templates/admin-roster.html',
     controller:'AdminRosterCtrl'
   })
 
   .state('editRoster', {
+    cache: false,
     url: '/editRoster',
     templateUrl: 'templates/editRoster.html',
     controller:'editRosterCtrl'
   })
 
   .state('roster', {
+    cache: false,
     url: '/roster',
     templateUrl: 'templates/roster.html',
     controller:'RosterCtrl'

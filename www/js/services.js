@@ -34,7 +34,7 @@ angular.module('starter')
     }
   };
 })
-.factory('Players', function($firebaseObject,CONFIG,$firebaseArray) {
+.factory('Players', function($window,$firebaseObject,CONFIG,$firebaseArray) {
 //  var ref = new Firebase(CONFIG.FIREBASE_DB_URL);
   var players = firebase.database().ref("Players");
   var players_array = $firebaseArray(players);
@@ -88,11 +88,39 @@ angular.module('starter')
       firebase.database().ref(path).remove()
         .then(function() {
           console.log("Remove succeeded. 100")
+          $window.location.reload(true);//This refreshes everything
+
         })
         .catch(function(error) {
           console.log("Remove failed: " + error.message)
         });
       console.log("Delete record function happened");
+    },
+    getNextID: function(){
+      var lengths = player_details_for_table.length;
+      var checkNum;
+      var falseAlarm = false;
+      if(player_details_for_table[lengths-1].player_id != (lengths-1)){
+        for(var i=0;i<lengths;i++){
+          falseAlarm = false;
+          if(player_details_for_table[i].player_id != i){
+            //console.log("i: "+ i + " id: "+player_details_for_table[i].player_id);
+            for(var k=i;k<lengths;k++){
+              if(i == player_details_for_table[k].player_id){
+                falseAlarm = true;
+              }
+            }
+            if(falseAlarm == false){
+              checkNum = i;
+              //console.log("checkNum: "+checkNum);
+              return checkNum;
+            }
+          }
+        }
+      }
+      else{
+        return lengths;
+      }
     },
     get: function(playerId) {
       for (var i = 0; i < player_details_for_table.length; i++) {
