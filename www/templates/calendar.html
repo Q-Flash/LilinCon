@@ -1,5 +1,11 @@
-<onezone-datepicker datepicker-object="onezoneDatepicker">
-    <button class="button button-block button-outline button-positive show-onezone-datepicker">
-        {{onezoneDatepicker.date | date:'dd MMMM yyyy'}}
-    </button>
-</onezone-datepicker>
+<ion-view view-title="Calendar">
+  <div class = "bg">
+    <ion-content class="padding">
+      <onezone-datepicker datepicker-object="onezoneDatepicker">
+          <button class="button button-block button-outline button-positive show-onezone-datepicker">
+              {{onezoneDatepicker.date | date:'dd MMMM yyyy'}}
+          </button>
+      </onezone-datepicker>
+    </ion-content>
+  </div>
+</ion-view>

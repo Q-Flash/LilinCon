@@ -29,7 +29,7 @@ angular.module('starter').controller('calendarCtrl', function ($scope,$firebaseO
     disableWeekend: false,
     disableDates: disableDates,
     disableDaysOfWeek: disableDaysOfWeek,
-    showDatepicker: false,
+    showDatepicker: true,
     showTodayButton: true,
     calendarMode: false,
     hideCancelButton: false,
