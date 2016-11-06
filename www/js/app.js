@@ -150,7 +150,7 @@ angular.module('starter', ['ionic','firebase','onezone-datepicker','starter.conf
       controller:'reportController'
   })
 
-    $urlRouterProvider.otherwise('/calendar');
+    $urlRouterProvider.otherwise('/login');
 
 }])
 
