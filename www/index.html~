@@ -51,6 +51,7 @@
     <ion-nav-bar class="bar-assertive">
         <ion-nav-back-button>
         </ion-nav-back-button>
+        <ion-item class="item-divider item-icon-right"><b><a href="#/manager" class="button button-clear button-calm">Home</a></b> <i class="icon ion-person"></i></ion-item><br>
     </ion-nav-bar>
     <ion-nav-view cache-view="false"></ion-nav-view>
   </body>

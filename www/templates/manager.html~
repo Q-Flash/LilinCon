@@ -7,7 +7,7 @@
           <p><a href="#/adminRoster" class="button button-clear button-positive">Edit Roster</a></p>
           <p><a href="#/health" class="button button-clear button-positive">Health Records</a></p>
           <p><a href="#/budget" class="button button-clear button-positive">Budget Records</a></p>
-          <p><a href="#/report" class="button button-clear button-positive">Update Acheivements</a></p>
+          <p><a href="#/report" class="button button-clear button-positive">Monthly Log Report</a></p>
         </ion-content>
   </div>
 </ion-view>

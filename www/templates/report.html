@@ -1,0 +1,22 @@
+<ion-view view-title="Acheivements">
+        <ion-content class="padding-top">
+        <div class="bg">
+          <form novalidate="" name="acheivementForm" form-manager>
+          <div class="box">
+            <label class="item item-input item-floating-label"
+            ng-class="{ 'has-error' : acheivementForm.txtreportacheivement.$invalid && acheivementForm.$submitted }">
+              <span class="input-label">Enter Acheivement...</span>
+              <input name="txtreportacheivement" type="text" ng-model="report.report_acheivement"
+              placeholder="Enter Acheivement..."
+              required>
+            </label>
+        </div>      
+        <div class="padding-top">
+            <button ng-click="submit()"  class = "button button-block button-calm">
+              Submit
+            </button>
+          </div>
+        </form>
+
+        </ion-content>
+</ion-view>
