@@ -1,32 +1,34 @@
 <ion-view hide-back-button="false" title="Login" hide-nav-bar="false" >
+  <div class="login_red">
   <ion-content class="has-header">
 
 	<form name="form_login" ng-submit="doLogin(userLogin)" novalidate>
 	  	<div class="list">
 
-		  <label class="item item-input item-floating-label">
+		  <label class="item item-input item-stacked-label">
 		    <span class="input-label">Email</span>
 		    <input type="text" ng-model="$parent.userLogin.username" id="user_name" placeholder="Email">
 		  </label>
 
-		  <label class="item item-input item-floating-label">
+		  <label class="item item-input item-stacked-label">
 		    <span class="input-label">Password</span>
 		    <input type="password" ng-model="$parent.userLogin.password" id="user_pass" placeholder="Password">
 		  </label>
 
 		</div>
 		<div class="padding">
-			<button type="submit" class="button button-block button-calm">Login</button>
+			<button type="submit" class="button button-outline button-block button-assertive"> Login </button>
 		</div>
 	 </form>
 
-	 <div class="padding">
-	 <div class="padding">
-	    <button type="submit" class="button button-block button-calm" ui-sref="signup">Signup</button>
-	 </div>
-	 <div class="padding">
-		<button type="submit" class="button button-block button-calm" ui-sref="reset">Forgot Password</button>
-	 </div>
+
+
+	    <button  type = "submit" class="button button-clear button-assertive" ui-sref="signup">Signup</button>
+
+
+		<button type="submit" class="button button-clear button-assertive" ui-sref="reset">Forgot Password</button>
+
 
   </ion-content>
+  </div>
 </ion-view>

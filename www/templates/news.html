@@ -1,18 +1,9 @@
-
-
 <ion-view view-title="News">
-
-  <div class = "bg">
+  <div class = "red_bg">
   <ion-content class="padding">
-
-
     <ion-list>
-
-
     <div class ="outside">
-
       <ion-item class="list card item-remove-animate  item-icon-right" ng-repeat="item in news" type="item-text-wrap" href="#/tab/chats/{{item.id}}">
-
         <h2>
           <div class="text-center"><strong>{{item.name}}</strong></div>
         </h2>
@@ -29,20 +20,19 @@
     </ion-list>
 
 <div class="text-center">
-  <button class="button button-outline button-block button-positive">
+  <button class="button button-outline button-block button-assertive">
     Show More
   </button>
 </div>
 </div>
 
   </ion-content>
-  </div>
+  <ion-tabs class="tabs-icon-top tabs-color-active-assertive">
+    <ion-tab title="News" icon-off="ion-ios-home-outline" icon-on="ion-ios-home-outline" href="#/news">
+      <ion-nav-view name="news"></ion-nav-view>
+    </ion-tab>
 
-  <ion-tabs class="tabs-icon-top tabs-color-active-positive">
-    <!-- Dashboard Tab -->
-
-
-    <ion-tab title="Calendar" icon-off="ion-clipboard" href="#/calendar">
+    <ion-tab title="Calendar" icon-off="ion-calendar" icon-on="ion-calendar" href="#/calendar">
       <ion-nav-view name="calendar"></ion-nav-view>
     </ion-tab>
 
@@ -54,4 +44,6 @@
       <ion-nav-view name="manager"></ion-nav-view>
     </ion-tab>
   </ion-tabs>
+  </div>
+
 </ion-view>

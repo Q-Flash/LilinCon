@@ -1,44 +1,44 @@
 <ion-view view-title="Team Roster">
 
   <ion-content class="padding">
-  <div class="bg">
+  <div class="red_bg"> 
 
    <div class ="outside">
 
 
-  <style>
-         table, th , td {
-            border: 1px solid grey;
-            border-collapse: collapse;
-            padding: 5px;
-         }
-         
-         table tr:nth-child(odd) {
-            background-color: #f2f2f2;
-         }
-         
-         table tr:nth-child(even) {
-            background-color: #ffffff;
-         }
-  </style>
+   <style>
+          table, th , td {
+             border: 1px solid grey;
+             border-collapse: collapse;
+             padding: 5px;
+          }
+
+          table tr:nth-child(odd) {
+           /*  background-color: #f2f2f2; */
+          }
+
+          table tr:nth-child(even) {
+           /*  background-color: #ffffff; */
+          }
+   </style>
 
 
-  <table border="0">
-        <thead>
-            <tr>
-                <th>Name</th>
-               <!-- <th>#Number</th> -->
-                <th>Position</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="player in player_details">
-                <td>{{player.player_fname}}</td>
-               <!-- <td>{{player.number}}</td> -->
-                <td>{{player.player_prole}}</td>
-            </tr>
-        </tbody>
-    </table>
+   <table border="0">
+         <thead>
+             <tr>
+                 <th>Name</th>
+                 <th>Primary Role</th>
+                 <th>Secondary Role</th>
+             </tr>
+         </thead>
+         <tbody>
+             <tr ng-repeat="player in player_details">
+                 <td>{{player.player_fname}} {{player.player_lname}}</td>
+                 <td>{{player.player_prole}}</td>
+                 <td>{{player.player_srole}}</td>
+             </tr>
+         </tbody>
+     </table>
 
   </div>
 
