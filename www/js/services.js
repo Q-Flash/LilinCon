@@ -34,7 +34,7 @@ angular.module('starter')
     }
   };
 })
-.factory('Players', function($window,$firebaseObject,CONFIG,$firebaseArray) {
+.factory('Players', function($state,$window,$firebaseObject,CONFIG,$firebaseArray) {
 //  var ref = new Firebase(CONFIG.FIREBASE_DB_URL);
   var players = firebase.database().ref("Players");
   var players_array = $firebaseArray(players);
@@ -87,12 +87,11 @@ angular.module('starter')
       console.log(path);
       firebase.database().ref(path).remove()
         .then(function() {
-          console.log("Remove succeeded. 100")
+          console.log("Remove succeeded. 100");
           $window.location.reload(true);//This refreshes everything
-
         })
         .catch(function(error) {
-          console.log("Remove failed: " + error.message)
+          console.log("Remove failed: " + error.message);
         });
       console.log("Delete record function happened");
     },

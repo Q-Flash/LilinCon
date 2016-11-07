@@ -4,6 +4,10 @@ angular.module('starter')
 .controller('RosterCtrl', function($scope, $location, Players) {
   $scope.player_details = Players.all();
 })
+
+.controller('scheduleController', function(){
+
+})
 .controller('AdminRosterCtrl', function(Players,$scope) {
   //$scope.team = Team.all();
   $scope.player_details = Players.all();
@@ -19,6 +23,7 @@ angular.module('starter')
   $scope.remove = function(item){
     News.remove(item);
   };
+
 })
 
 .controller('healthController', function() {

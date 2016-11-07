@@ -39,7 +39,7 @@ angular.module('starter').controller('editRosterCtrl', function ($window,Players
       player_srole: form.txtplayersrole.$viewValue
     })
     console.log("Submitting");
-    $state.go("news");
+    alert('Data submitted successfully');
     $window.location.reload(true);//This refreshes everything
   }
 })

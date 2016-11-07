@@ -1,4 +1,4 @@
-<ion-view hide-back-button="false" title="Login" hide-nav-bar="false" >
+<ion-view hide-back-button="true" title="Login" hide-nav-bar="false" >
   <div class="login_red">
   <ion-content class="has-header">
 
@@ -21,11 +21,11 @@
 		</div>
 	 </form>
 
+   <div class="padding">
+       <button ng-click="userEnter()" class="button button-outline button-block button-assertive">Enter As User</button>
+   </div>
 
-
-	    <button  type = "submit" class="button button-clear button-assertive" ui-sref="signup">Signup</button>
-
-
+	  <button  type = "submit" class="button button-clear button-assertive" ui-sref="signup">Signup</button>
 		<button type="submit" class="button button-clear button-assertive" ui-sref="reset">Forgot Password</button>
 
 

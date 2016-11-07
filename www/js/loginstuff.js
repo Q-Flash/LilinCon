@@ -2,9 +2,13 @@
 angular.module('starter')
 .controller('loginController',['$scope', '$firebaseArray', 'CONFIG', '$document', '$state', function($scope, $firebaseArray, CONFIG, $document, $state) {
 
-
+  var isLoggedIn = false;
 
   // Perform the login action when the user submits the login form
+  $scope.userEnter = function(){
+    $state.go("news");
+  }
+
   $scope.doLogin = function(userLogin) {
 
 
@@ -28,6 +32,7 @@ angular.module('starter')
                     if(user.emailVerified) { //check for verification email confirmed by user from the inbox
 
                       console.log("email verified");
+                      isLoggedIn = true;
                       //$state.go("app.dashboard");
                       $state.go("news");
                       name = user.displayName;
@@ -91,19 +96,31 @@ angular.module('starter')
 }])
 
 .controller('appController',['$scope', '$firebaseArray', 'CONFIG', '$document', '$state', function($scope, $firebaseArray, CONFIG, $document, $state) {
+  var isLoggedIn;
 
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
 
-      $document[0].getElementById("photo_user").src = localStorage.getItem("photo");
-
+      //$document[0].getElementById("photo_user").src = localStorage.getItem("photo");
+      isLoggedIn = true;
 
     } else {
       // No user is signed in.
-      $state.go("login");
+      isLoggedIn = false;
+      //$state.go("login");
     }
   });
 
+  $scope.hideManagerTab = function(){
+    if(isLoggedIn){
+      console.log("In function show" +isLoggedIn);
+      return "ng-show";
+    }
+    else{
+      console.log("In function hide" +isLoggedIn);
+      return "ng-hide";
+    }
+  }
 
   $scope.doLogout = function(){
 

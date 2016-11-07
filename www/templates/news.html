@@ -40,9 +40,12 @@
       <ion-nav-view name="roster"></ion-nav-view>
     </ion-tab>
 
-    <ion-tab  icon-off="ion-pinpoint" icon-on="ion-pinpoint" href="#/manager">
+  <div ng-controller="appController">
+    <ion-tab class = "{{hideManagerTab()}}"
+     icon-off="ion-pinpoint" icon-on="ion-pinpoint" href="#/manager">
       <ion-nav-view name="manager"></ion-nav-view>
     </ion-tab>
+  </div>
   </ion-tabs>
   </div>
 
