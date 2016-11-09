@@ -3,12 +3,13 @@
   <ion-content class="padding">
     <ion-list>
     <div class ="outside">
+      <br><br><br>
       <ion-item class="list card item-remove-animate  item-icon-right" ng-repeat="item in news" type="item-text-wrap" href="#/tab/chats/{{item.id}}">
         <h2>
-          <div class="text-center"><strong>{{item.name}}</strong></div>
+          <div class="text-center"><strong>{{item.news_title}}</strong></div>
         </h2>
         <p>
-          <div class = "text-right">{{item.date_added}}</div>
+          <div class = "text-right">{{item.news_time}}</div>
         </p>
 
         <i class="icon ion-chevron-right icon-accessory"></i>

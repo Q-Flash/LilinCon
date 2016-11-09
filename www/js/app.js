@@ -37,7 +37,7 @@ angular.module('starter', ['ionic','firebase','onezone-datepicker','starter.conf
 .config(['$stateProvider', '$urlRouterProvider','$ionicConfigProvider',function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
     $ionicConfigProvider.navBar.alignTitle('center');
-
+    $ionicConfigProvider.views.maxCache(0);
     $stateProvider
 
     .state('app', {

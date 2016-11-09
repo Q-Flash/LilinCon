@@ -1,38 +1,100 @@
 //angular.module('starter.services', [])
 'Use Strict';
 angular.module('starter')
-.factory('News', function() {
-  var news = [{
-  id: 1,
-   name: 'Fishing',
-   details: 'Gotta get dem potaters',
-   location:'Browns Beach',
-   date:' Mon Oct 24, 2016',
-   date_added: 'Oct 12 2016'
- }, {
-  id: 2,
-  name: 'Baseball',
-  details: 'Goose lurks holding fish',
-  location:'Sommoners Rift',
-  date:' Mon Oct 17, 2016',
-  date_added: 'Oct 12 2016'
- }];
-  return {
-    all: function() {
-      return news;
-    },
-    remove: function(item) {
-      news.splice(news.indexOf(item), 1);
-    },
-    get: function(itemId) {
-      for (var i = 0; i < news.length; i++) {
-        if (news[i].id === parseInt(itemId)) {
-          return news[i];
-        }
-      }
-      return null;
-    }
-  };
+.factory('News', function($window,$firebaseObject,$firebaseArray) {
+ var news = firebase.database().ref("News");
+ var news_array = $firebaseArray(news);
+ var news_details_for_table = [];
+
+ news_array.$loaded(function(newsInfo){
+   angular.forEach(newsInfo, function (value, key){
+     var temp_news= {
+       news_id: key,
+       news_title: value.title,
+       news_message: value.message,
+       news_time: value.date_added
+     };
+     news_details_for_table.push(temp_news);
+   })
+ })
+
+ return {
+
+   all: function() {
+     return news_details_for_table;
+   },
+   remove: function(displayNewsInfo) {
+     news_details_for_table.splice(news_details_for_table.indexOf(displayNewsInfo), 1);
+     console.log("Remove function happened -news-");
+   },
+
+   delete_record: function(record){
+     var teh_key;
+     firebase.database().ref("News")
+     .orderByChild("news_id")
+     .equalTo(record.news_id)
+     .once("value", function (snapshot) {
+       var key;
+       snapshot.forEach(function (childSnapshot) {
+         key = childSnapshot.key;
+         return true; // Cancel further enumeration.
+       });
+
+       if (key) {
+         teh_key = key;
+         console.log("Found item: " + key);
+       } else {
+         console.log("Item not found.");
+       }
+     });
+     var path = "News/" + teh_key;
+     console.log(path);
+     firebase.database().ref(path).remove()
+       .then(function() {
+         console.log("Remove succeeded. 100");
+         $window.location.reload(true);//This refreshes everything
+       })
+       .catch(function(error) {
+         console.log("Remove failed: " + error.message);
+       });
+     console.log("Delete record function happened-news-");
+   },
+   getNextID: function(){
+     var lengths = news_details_for_table.length;
+     var checkNum;
+     var falseAlarm = false;
+     if(lengths == 0){
+       return 0;
+     }
+     if(news_details_for_table[lengths-1].news_id != (lengths-1)){
+       for(var i=0;i<lengths;i++){
+         falseAlarm = false;
+         if(news_details_for_table[i].news_id != i){
+           for(var k=i;k<lengths;k++){
+             if(i == news_details_for_table[k].news_id){
+               falseAlarm = true;
+             }
+           }
+           if(falseAlarm == false){
+             checkNum = i;
+             return checkNum;
+           }
+         }
+       }
+     }
+     else{
+       return lengths;
+     }
+   },
+   get: function(newsId) {
+     for (var i = 0; i < news_details_for_table.length; i++) {
+       if (news_details_for_table[i].news_id === parseInt(newsId)) {
+         return news_details_for_table[i];
+       }
+     }
+     return null;
+   }
+ };
 })
 .factory('Players', function($state,$window,$firebaseObject,CONFIG,$firebaseArray) {
 //  var ref = new Firebase(CONFIG.FIREBASE_DB_URL);

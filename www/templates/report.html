@@ -1,6 +1,26 @@
 <ion-view view-title="Acheivements">
         <ion-content class="padding-top">
         <div class="bg">
+          <form name="News" ng-submit="doSubmitNews(newSubmit)" novalidate>
+              <div class="list">
+
+                <label class="item item-input item-stacked-label">
+          		    <span class="input-label">Title</span>
+          		    <input type="text" ng-model="$parent.newSubmit.newsTitle" id="title" placeholder="Title">
+          		  </label>
+
+                <label class="item item-input item-stacked-label">
+          		    <span class="input-label">Message</span>
+          		    <input type="text" ng-model="$parent.newSubmit.newsDetail" id="detail" placeholder="Message">
+          		  </label>
+              </div>
+
+              <div class="padding">
+                <button type="submit" class="button button-outline button-block button-assertive">Submit</button>
+              </div>
+          </form>
+
+          <!--
           <form novalidate="" name="acheivementForm" form-manager>
           <div class="box">
             <label class="item item-input item-floating-label"
@@ -10,13 +30,14 @@
               placeholder="Enter Acheivement..."
               required>
             </label>
-        </div>      
+        </div>
         <div class="padding-top">
             <button ng-click="submit()"  class = "button button-block button-calm">
               Submit
             </button>
           </div>
         </form>
+      -->
 
         </ion-content>
 </ion-view>

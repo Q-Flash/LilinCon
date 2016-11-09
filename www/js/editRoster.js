@@ -20,15 +20,37 @@ angular.module('starter').controller('editRosterCtrl', function ($window,Players
       player_details_for_table.push(temp_player);
     })
   })
-  var next_id = Players.getNextID();
+
+  getNextID = function(){
+    var lengths = player_details_for_table.length;
+    var checkNum;
+    var falseAlarm = false;
+    if(player_details_for_table[lengths-1].player_id != (lengths-1)){
+      for(var i=0;i<lengths;i++){
+        falseAlarm = false;
+        if(player_details_for_table[i].player_id != i){
+          //console.log("i: "+ i + " id: "+player_details_for_table[i].player_id);
+          for(var k=i;k<lengths;k++){
+            if(i == player_details_for_table[k].player_id){
+              falseAlarm = true;
+            }
+          }
+          if(falseAlarm == false){
+            checkNum = i;
+            //console.log("checkNum: "+checkNum);
+            return checkNum;
+          }
+        }
+      }
+    }
+    else{
+      return lengths;
+    }
+  }
+
+  var next_id = getNextID();
+
   console.log("Next id: "+next_id);
-  $scope.player = {
-    player_id: '',
-    player_fname: '',
-    player_lname: '',
-    player_prole: '',
-    player_srole: ''
-  };
 
   $scope.userSubmit = function(form){
     players.push({
@@ -40,7 +62,7 @@ angular.module('starter').controller('editRosterCtrl', function ($window,Players
     })
     console.log("Submitting");
     alert('Data submitted successfully');
-    $window.location.reload(true);//This refreshes everything
+    $state.go("news");
   }
 })
 
