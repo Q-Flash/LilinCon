@@ -88,7 +88,7 @@ angular.module('starter')
   news_array.$loaded(function(newsInfo){
     angular.forEach(newsInfo, function (value, key){
       var temp_news= {
-        news_id: key,
+        news_id: value.news_id,
         news_title: value.title,
         news_message: value.message,
         news_time: value.date_added
@@ -108,6 +108,35 @@ angular.module('starter')
 
 })
 
+.controller('newsDetailController', function($stateParams,$scope,$firebaseObject,$firebaseArray){
+  var news = firebase.database().ref("News");
+  var news_array = $firebaseArray(news);
+  var news_details_for_table = [];
+
+  news_array.$loaded(function(newsInfo){
+    angular.forEach(newsInfo, function (value, key){
+      var temp_news= {
+        news_id: value.news_id,
+        news_title: value.title,
+        news_message: value.message,
+        news_time: value.date_added
+      };
+      news_details_for_table.push(temp_news);
+      console.log("News IDs: "+news_details_for_table[key].news_id);
+
+    })
+    for (var i = 0; i < news_details_for_table.length; i++) {
+      if (news_details_for_table[i].news_id === parseInt($stateParams.newsID)) {
+        $scope.news = news_details_for_table[i];
+        console.log("News id ="+$scope.news.news_id);
+      }
+    }
+  })
+  console.log("State Params News ID: "+$stateParams.newsID);
+  //news_details_for_table.forEach()
+  //$scope.chat = Chats.get($stateParams.chatId)
+  //$scope.news = news_details_for_table[];
+})
 
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
