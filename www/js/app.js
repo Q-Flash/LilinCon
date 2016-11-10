@@ -144,13 +144,19 @@ angular.module('starter', ['ionic','firebase','onezone-datepicker','starter.conf
       controller:'budgetController'
   })
 
+  .state('news-detail', {
+    url: '/news/:newsID',
+      templateUrl: 'templates/news-detail.html',
+      controller:'newsDetailController'
+  })
+
   .state('report', {
     url: '/report',
       templateUrl: 'templates/report.html',
       controller:'reportController'
   })
 
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/report');
 
 }])
 

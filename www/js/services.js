@@ -101,19 +101,19 @@ angular.module('starter')
   var players = firebase.database().ref("Players");
   var players_array = $firebaseArray(players);
   var player_details_for_table = [];
+  var player_id_array = [];
   players_array.$loaded(function(playerInfo){
     angular.forEach(playerInfo, function (value, key){
       var displayPlayerInfo = value;
       var temp_player = {
-        unique_key: value.key,
         player_id: displayPlayerInfo.player_id,
         player_fname: displayPlayerInfo.player_fname,
         player_lname: displayPlayerInfo.player_lname,
         player_prole: displayPlayerInfo.player_prole,
         player_srole: displayPlayerInfo.player_srole,
       };
-      console.log("unique id:"+ playerInfo.key);
       player_details_for_table.push(temp_player);
+      player_id_array[key] = value.player_id;
     })
   })
 
@@ -158,6 +158,29 @@ angular.module('starter')
       console.log("Delete record function happened");
     },
     getNextID: function(){
+      var falseAlarm = false;
+      console.log("Array Length: "+player_id_array.length);
+      if(player_id_array[player_id_array.length-1] != (player_id_array.length-1)){
+        for(var i=0; i < player_id_array.length ;i++){
+          falseAlarm = false;
+          if(player_id_array[i] != i){
+            for(var k=i; k < lengths; k++){
+              if(i == player_id_array[k]){
+                falseAlarm = true;
+              }
+            }
+            if(falseAlarm == false){
+              //console.log("checkNum: "+checkNum);
+              return i;
+            }
+          }
+        }
+      }
+      else{
+        return player_id_array.length;
+      }
+
+      /*
       var lengths = player_details_for_table.length;
       var checkNum;
       var falseAlarm = false;
@@ -182,6 +205,7 @@ angular.module('starter')
       else{
         return lengths;
       }
+      */
     },
     get: function(playerId) {
       for (var i = 0; i < player_details_for_table.length; i++) {

@@ -1,5 +1,5 @@
 'Use Strict';
-angular.module('starter').controller('editRosterCtrl', function ($window,Players,$firebaseArray,$scope, $state,$http, $firebaseObject) {
+angular.module('starter').controller('editRosterCtrl', function ($window,$firebaseArray,$scope, $state,$http, $firebaseObject) {
   //var ref = new Firebase(FURL);
 
   var players = firebase.database().ref("Players");
@@ -11,7 +11,7 @@ angular.module('starter').controller('editRosterCtrl', function ($window,Players
       var displayPlayerInfo = value;
       console.log("data id:" +value.player_id);
       var temp_player = {
-        id: displayPlayerInfo.player_id,
+        player_id: displayPlayerInfo.player_id,
         player_fname: displayPlayerInfo.player_fname,
         player_lname: displayPlayerInfo.player_lname,
         player_prole: displayPlayerInfo.player_prole,
@@ -19,51 +19,40 @@ angular.module('starter').controller('editRosterCtrl', function ($window,Players
       };
       player_details_for_table.push(temp_player);
     })
-  })
 
-  getNextID = function(){
+    //console.log("Player array: "+player_details_for_table);
+    //console.log("Player array obj" +player_details_for_table[0]);
+    //console.log("Player array obj" +player_details_for_table[0].player_id);
     var lengths = player_details_for_table.length;
-    var checkNum;
-    var falseAlarm = false;
-    if(player_details_for_table[lengths-1].player_id != (lengths-1)){
-      for(var i=0;i<lengths;i++){
-        falseAlarm = false;
-        if(player_details_for_table[i].player_id != i){
-          //console.log("i: "+ i + " id: "+player_details_for_table[i].player_id);
-          for(var k=i;k<lengths;k++){
-            if(i == player_details_for_table[k].player_id){
-              falseAlarm = true;
-            }
-          }
-          if(falseAlarm == false){
-            checkNum = i;
-            //console.log("checkNum: "+checkNum);
-            return checkNum;
-          }
-        }
+    var checkNum = -1;
+
+    for(var i=0; i<lengths; i++){
+      if(player_details_for_table[i].player_id > checkNum){
+        checkNum = player_details_for_table[i].player_id;
       }
     }
-    else{
-      return lengths;
+    if(lengths == 0){
+      checkNum = 0;
     }
-  }
+    var next_id = checkNum+1;
 
-  var next_id = getNextID();
+    console.log("Next id: "+next_id);
 
-  console.log("Next id: "+next_id);
+    $scope.userSubmit = function(form){
+      players.push({
+        player_id: next_id,
+        player_fname: form.txtplayerfname.$viewValue,
+        player_lname: form.txtplayerlname.$viewValue,
+        player_prole: form.txtplayerprole.$viewValue,
+        player_srole: form.txtplayersrole.$viewValue
+      })
+      console.log("Submitting");
+      alert('Data submitted successfully');
+      $state.go("news");
+    }
+  })
 
-  $scope.userSubmit = function(form){
-    players.push({
-      player_id: next_id,
-      player_fname: form.txtplayerfname.$viewValue,
-      player_lname: form.txtplayerlname.$viewValue,
-      player_prole: form.txtplayerprole.$viewValue,
-      player_srole: form.txtplayersrole.$viewValue
-    })
-    console.log("Submitting");
-    alert('Data submitted successfully');
-    $state.go("news");
-  }
+
 })
 
 .directive('formManager', function($ionicLoading){
