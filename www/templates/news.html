@@ -32,16 +32,18 @@
       <ion-nav-view name="roster"></ion-nav-view>
     </ion-tab>
 
-  <div ng-controller="appController">
+<!--  <div ng-controller="appController"> -->
     <ion-tab class = "{{hideManagerTab()}}" title="Admin"
      icon-off="ion-pinpoint" icon-on="ion-pinpoint" href="#/manager">
       <ion-nav-view name="manager"></ion-nav-view>
     </ion-tab>
-  </div>
+<!--  </div> -->
 
-    <ion-tab title="Logout" icon-off="ion-log-out" icon-on="ion-log-out" href="#/logout">
-      <ion-nav-view name="logout"></ion-nav-view>
-    </ion-tab>
+    <div ng-controller="appController">
+      <ion-tab title="Logout" ng-click="doLogout()" icon-off="ion-log-out" icon-on="ion-log-out">
+        <ion-nav-view name="logout"></ion-nav-view>
+      </ion-tab>
+    </div>
   </ion-tabs>
   </div>
 

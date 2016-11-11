@@ -102,31 +102,20 @@ angular.module('starter')
     if (user) {
 
       //$document[0].getElementById("photo_user").src = localStorage.getItem("photo");
-      isLoggedIn = true;
 
     } else {
       // No user is signed in.
-      isLoggedIn = false;
       //$state.go("login");
     }
   });
 
-  $scope.hideManagerTab = function(){
-    if(isLoggedIn){
-      console.log("In function show" +isLoggedIn);
-      return "ng-show";
-    }
-    else{
-      console.log("In function hide" +isLoggedIn);
-      return "ng-hide";
-    }
-  }
+
 
   $scope.doLogout = function(){
 
       firebase.auth().signOut().then(function() {
         // Sign-out successful.
-        //console.log("Logout successful");
+        console.log("Logout successful");
         $state.go("login");
 
       }, function(error) {

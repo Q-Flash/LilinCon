@@ -81,6 +81,21 @@ angular.module('starter')
 })
 
 .controller('NewsCtrl', function($scope,$firebaseObject,$firebaseArray) {
+  var isLoggedIn;
+
+  $scope.hideManagerTab = function(){
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user.email == "mubarakdcricketer@hotmail.com") {
+        console.log("In function show - "+user.email);
+        //console.log(user);
+        return "ng-show";
+      } else {
+        console.log("In function hide");
+        return "ng-hide";
+      }
+    });
+  }
+
   var news = firebase.database().ref("News");
   var news_array = $firebaseArray(news);
   var news_details_for_table = [];
