@@ -23,8 +23,104 @@ angular.module('starter')
   $scope.player_details = player_details_for_table;
 })
 
-.controller('scheduleController', function(){
+.controller('scheduleController', function($filter,$scope,$state,$firebaseObject,$firebaseArray){
+  var selectDate;
+  var date = new Date(); console.log("Date: "+date);
+  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  var daysOfTheWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  var startDate = new Date(2013, 1, 26);
+  var endDate = new Date(2025, 12, 26);
+  var disableDates = [];
+  var disableDaysOfWeek = {};
+  var highlights = [
+    {
+        date: new Date(2016, 1, 7),
+        color: '#8FD4D9',
+        textColor: '#fff'
+    },
+    {
+        date: new Date(2016, 1, 18)
+    }
+  ];
+  $scope.onezoneDatepicker = {
+    date: date, // MANDATORY
+    mondayFirst: false,
+    months: months,
+    daysOfTheWeek: daysOfTheWeek,
+    startDate: startDate,
+    endDate: endDate,
+    disablePastDays: true,
+    disableSwipe: false,
+    disableWeekend: false,
+    disableDates: disableDates,
+    disableDaysOfWeek: disableDaysOfWeek,
+    showDatepicker: true,
+    showTodayButton: true,
+    calendarMode: false,
+    hideCancelButton: false,
+    hideSetButton: false,
+    highlights: highlights,
 
+
+    callback: function(Cvalue){
+      console.log("Value: "+$filter('date')(Cvalue));
+      selectDate = $filter('date')(Cvalue);
+      //return $filter('date')(Cvalue);
+    }
+  };
+  var events = firebase.database().ref("Events");
+  var event_array = $firebaseArray(events);
+  var event_details_for_table = [];
+
+  event_array.$loaded(function(eventInfo){
+    angular.forEach(eventInfo, function (value, key){
+      var temp_event= {
+        event_id: value.event_id,
+        event_title: value.event_title,
+        event_description: value.event_description,
+        event_venue: value.event_venue,
+        event_time: value.event_time,
+        event_date: value.event_date,
+        date_added: value.date_added
+      };
+      event_details_for_table.push(temp_event);
+    })
+    var checkNum = -1;
+    for(var i=0; i<event_details_for_table.length; i++){
+      if(event_details_for_table[i].event_id > checkNum){
+        checkNum = event_details_for_table[i].event_id;
+        console.log("checkNum news: "+checkNum);
+      }
+    }
+    if(event_details_for_table.length == 0){
+      checkNum = -1;
+    }
+    var nextEventID = checkNum+1;
+    console.log("Next News ID: "+nextEventID);
+    $scope.doSubmitEvent = function(eventSubmit){
+      var currDate = new Date();
+      console.log(eventSubmit);
+      currDate = $filter('date')(currDate);
+
+      var eventData = {
+        event_id: nextEventID,
+        event_title: eventSubmit.eventTitle,
+        event_description: eventSubmit.eventDetail,
+        event_venue: eventSubmit.eventVenue,
+        event_time: eventSubmit.eventTime,
+        event_date: selectDate,
+        date_added: $filter('date')(currDate)
+      }
+      //console.log("Data to push: "+newsData.news_id +newsData.title + newsData.message +newsData.date_added);
+
+      events.push(eventData);
+      console.log("Push successful");
+
+      alert('Message Added');
+      $state.go("calendar");
+
+    }
+  })
 })
 .controller('AdminRosterCtrl', function($state,$scope,$firebaseObject,$firebaseArray) {
   var players = firebase.database().ref("Players");
@@ -84,18 +180,24 @@ angular.module('starter')
   var isLoggedIn;
 
   $scope.hideManagerTab = function(){
+    var ans = "banana";
     firebase.auth().onAuthStateChanged(function(user) {
       if (user.email == "mubarakdcricketer@hotmail.com") {
-        console.log("In function show - "+user.email);
+        ans = "ng-show";
+        //console.log("In function show - "+user.email+ans);
         //console.log(user);
-        return "ng-show";
+        return ans;
       } else {
-        console.log("In function hide");
-        return "ng-hide";
+        ans = "ng-hide";
+        //console.log("In function hide" +ans);
+        return ans;
       }
     });
+    //console.log("Function called");
   }
 
+  //$scope.hideResult = $scope.hideManagerTab();
+  console.log("Result: "+$scope.hideManagerTab());
   var news = firebase.database().ref("News");
   var news_array = $firebaseArray(news);
   var news_details_for_table = [];

@@ -3,6 +3,41 @@
         <ion-content class="padding-top">
           <h1>Welcome!</h1>
           <p>This page is for editing the schedule</p>
+          <onezone-datepicker datepicker-object="onezoneDatepicker">
+              <button class="button button-block button-dark show-onezone-datepicker">
+                  {{onezoneDatepicker.date | date:'dd MMMM yyyy'}}
+              </button>
+          </onezone-datepicker>
+
+          <form name="Events" ng-submit="doSubmitEvent(eventSubmit)" novalidate>
+              <div class="list">
+
+                <label class="item item-input item-stacked-label">
+          		    <span class="input-label">Title</span>
+          		    <input type="text" ng-model="$parent.eventSubmit.eventTitle" id="title" placeholder="Title">
+          		  </label>
+
+                <label class="item item-input item-stacked-label">
+          		    <span class="input-label">Description</span>
+          		    <input type="text" ng-model="$parent.eventSubmit.eventDetail" id="description" placeholder="Description">
+          		  </label>
+
+                <label class="item item-input item-stacked-label">
+          		    <span class="input-label">Venue</span>
+          		    <input type="text" ng-model="$parent.eventSubmit.eventVenue" id="venue" placeholder="Venue">
+          		  </label>
+
+                <label class="item item-input item-stacked-label">
+          		    <span class="input-label">Time</span>
+          		    <input type="text" ng-model="$parent.eventSubmit.eventTime" id="venue" placeholder="Time">
+          		  </label>
+
+              </div>
+
+              <div class="padding">
+                <button type="submit" class="button button-outline button-block button-assertive">Submit</button>
+              </div>
+          </form>
 
         </ion-content>
   </div>
