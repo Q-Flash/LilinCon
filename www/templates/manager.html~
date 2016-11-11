@@ -5,7 +5,7 @@
           <p><a href="#/scheduler" ><button class="button icon-left ion-grid">Edit Schedule</button></a></p>
 
           <p><a href="#/adminRoster" ><button class="button icon-left ion-clipboard">Edit Roster</button></a></p>
-          <p><a href="#/health" ><button class="button icon-left ion-document">Health Records</button></a></p>
+          <p><a href="#/health" ><button class="button icon-left ion-document">Injuries</button></a></p>
         <!--  <p><a href="" class="button button-clear button-positive">Budget Records</a></p>-->
           <p><a href="#/report" ><button class="button icon-left ion-flag">Update News</button></a></p>
 
@@ -14,7 +14,7 @@
 
 
 
-
+          <p ng-click="doLogout()"><a ><button  class="button button-clear button-assertive icon-left ion-log-out">Logout</button></a></p>
 
           <p><a href="#/news" ><button class="button button-clear button-assertive icon-left ion-home">Home</button></a></p>
           <p><a href="#/login" ><button class="button button-clear button-assertive icon-left ion-log-out">Logout</button></a></p>
