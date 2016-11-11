@@ -1,4 +1,4 @@
-<ion-view view-title="News Update">
+<ion-view view-title="Acheivements">
         <ion-content class="padding-top">
         <div class="bg">
           <form name="News" ng-submit="doSubmitNews(newSubmit)" novalidate>

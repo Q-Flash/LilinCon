@@ -33,7 +33,7 @@
     </ion-tab>
 
   <div ng-controller="appController">
-    <ion-tab class = "{{hideManagerTab()}}" title="Admin"
+    <ion-tab class = "{{hideManagerTab()}}"
      icon-off="ion-pinpoint" icon-on="ion-pinpoint" href="#/manager">
       <ion-nav-view name="manager"></ion-nav-view>
     </ion-tab>
