@@ -176,28 +176,37 @@ angular.module('starter')
   }
 })
 
-.controller('NewsCtrl', function($scope,$firebaseObject,$firebaseArray) {
-  var isLoggedIn;
-
+.controller('NewsCtrl', function($ionicPopup,$state,$scope,$firebaseObject,$firebaseArray) {
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user.email == "mubarakdcricketer@hotmail.com") {
+      $scope.ans= false;
+    } else {
+      $scope.ans= true;
+    }
+  })
   $scope.hideManagerTab = function(){
-    var ans = "banana";
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user.email == "mubarakdcricketer@hotmail.com") {
-        ans = "ng-show";
-        //console.log("In function show - "+user.email+ans);
-        //console.log(user);
-        return ans;
-      } else {
-        ans = "ng-hide";
-        //console.log("In function hide" +ans);
-        return ans;
-      }
-    });
-    //console.log("Function called");
+    return $scope.ans;
   }
 
-  //$scope.hideResult = $scope.hideManagerTab();
-  console.log("Result: "+$scope.hideManagerTab());
+  $scope.noAccessToManagerTab = function() {
+   var alertPopup = $ionicPopup.alert({
+     title: 'Stop!',
+     template: 'You don\'t have access to this tab. You hold no power here!'
+   });
+
+   alertPopup.then(function(res) {
+     console.log('GG 3Ez');
+   });
+ }
+  $scope.clickMTab = function(){
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user.email == "mubarakdcricketer@hotmail.com") {
+        $state.go("manager");
+      } else {
+        $scope.noAccessToManagerTab();
+      }
+    });
+  }
   var news = firebase.database().ref("News");
   var news_array = $firebaseArray(news);
   var news_details_for_table = [];
