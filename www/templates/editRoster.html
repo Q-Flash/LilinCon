@@ -1,14 +1,12 @@
 
 <ion-view view-title="Add New Player" >
+  <div class = "red_bg">
         <ion-content class="padding-top">
-          <div class="list text-center padding">
-          </div>
-          <h1> Potatoes are always watching </h1>
           <form novalidate="" name="playerForm" form-manager>
           <div class="list">
-            <label class="item item-input item-floating-label"
+            <label class="item item-input item-stacked-label"
             ng-class="{ 'has-error' : playerForm.txtplayerfname.$invalid && playerForm.$submitted }">
-              <span class="input-label">Player First Name</span>
+              <span class="input-label">First Name</span>
               <input name="txtplayerfname" type="text" ng-model="player.player_fname"
               placeholder="First Name"
               >
@@ -16,16 +14,16 @@
 
 
 
-            <label class="item item-input item-floating-label"
+            <label class="item item-input item-stacked-label"
               ng-class="{ 'has-error' : playerForm.txtplayerfname.$invalid && playerForm.$submitted }">
-              <span class="input-label">Player Last Name</span>
+              <span class="input-label">Last Name</span>
               <input name="txtplayerlname" type="text" ng-model="player.player_lname"
               placeholder="Last Name"
               >
             </label>
 
 
-          <label class="item item-input item-floating-label"
+          <label class="item item-input item-stacked-label"
           ng-class="{ 'has-error' : playerForm.txtplayerprole.$invalid && playerForm.$submitted }">
             <span class="input-label">Primary Role</span>
             <input name="txtplayerprole" type="text" ng-model="player.playerprole"
@@ -34,7 +32,7 @@
           </label>
 
 
-          <label class="item item-input item-floating-label"
+          <label class="item item-input item-stacked-label"
           ng-class="{ 'has-error' : playerForm.txtplayersrole.$invalid && playerForm.$submitted }">
             <span class="input-label">Secondary Role</span>
             <input name="txtplayersrole" type="text" ng-model="player.playersrole"
@@ -46,11 +44,10 @@
 
           </div>
           <div class="padding-top">
-            <button ng-click="submit()"  class = "button button-block button-calm">
-              Submit
-            </button>
+            <button ng-click="submit()" class="button button-outline button-block button-assertive">Submit</button>
           </div>
         </form>
         <p><a href="#/news" class="button icon-left ion-home">Home</a></p>
         </ion-content>
+  </div>
 </ion-view>

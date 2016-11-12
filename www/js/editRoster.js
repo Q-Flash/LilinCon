@@ -1,7 +1,5 @@
 'Use Strict';
 angular.module('starter').controller('editRosterCtrl', function ($window,$firebaseArray,$scope, $state,$http, $firebaseObject) {
-  //var ref = new Firebase(FURL);
-
   var players = firebase.database().ref("Players");
   var players_array = $firebaseArray(players);
   var player_details_for_table = [];

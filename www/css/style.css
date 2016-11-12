@@ -23,7 +23,9 @@
     z-index: 2;
     position: relative;
 }
-
+.black_font{
+  color: black;
+}
 .centre{
   margin: auto;
 }

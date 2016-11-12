@@ -1,7 +1,7 @@
 <ion-view view-title="Team Roster">
  <div class="red_bg">
   <ion-content class="padding">
- 
+
 
    <div class ="outside">
 
@@ -29,7 +29,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="player in player_details">
-                <td><a class="button ion-minus" ng-click = "remove_player(player)"></a></td>
+                <td><a class="button ion-minus" ng-click = "confirmDelete(player)"></a></td>
                 <td>{{player.player_fname}} {{player.player_lname}}</td>
                 <!-- <td>{{player.number}}</td>  -->
                 <td>{{player.player_prole}}</td>
