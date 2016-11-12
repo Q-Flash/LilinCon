@@ -1,11 +1,23 @@
 <ion-view view-title="Calendar">
   <div class = "red_bg">
     <ion-content class="padding">
-      <onezone-datepicker datepicker-object="onezoneDatepicker">
+      <onezone-datepicker datepicker-object="onezoneDatepicker"> <!--
           <button class="button button-block button-dark show-onezone-datepicker">
               {{onezoneDatepicker.date | date:'dd MMMM yyyy'}}
-          </button>
+          </button> -->
       </onezone-datepicker>
+
+      <div class="card">
+        <div class="item item-text-wrap">
+          <div class="text-center"><h2>Events</h2></div>
+          <p><strong>Title:</strong> {{eventSelect.event_title}}</p>
+          <p><strong>Venue:</strong> {{eventSelect.event_venue}}</p>
+          <p><strong>Date:</strong> {{eventSelect.event_date}}</p>
+          <p><strong>Time:</strong> {{eventSelect.event_time}}</p>
+          <p><strong>Description:</strong> {{eventSelect.event_description}}</p>
+        </div>
+      </div>
+
     </ion-content>
   </div>
 </ion-view>
