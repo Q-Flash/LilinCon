@@ -1,7 +1,7 @@
 <ion-view view-title="Team Roster">
   <div class="red_bg">
   <ion-content class="padding">
- 
+
 
    <div class ="outside">
 
@@ -22,15 +22,13 @@
          <thead>
              <tr>
                  <th>Name</th>
-                 <th>Primary Role</th>
-                 <th>Secondary Role</th>
+                 <th>Position</th>
              </tr>
          </thead>
          <tbody>
              <tr ng-repeat="player in player_details">
-                 <td>{{player.player_fname}} {{player.player_lname}}</td>
+                 <td><u>{{player.player_fname}} {{player.player_lname}}</u></td>
                  <td>{{player.player_prole}}</td>
-                 <td>{{player.player_srole}}</td>
              </tr>
          </tbody>
      </table>
