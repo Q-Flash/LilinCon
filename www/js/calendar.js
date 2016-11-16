@@ -97,7 +97,7 @@ angular.module('starter').controller('calendarCtrl', function ($filter,$ionicPop
     daysOfTheWeek: daysOfTheWeek,
     startDate: startDate,
     endDate: endDate,
-    disablePastDays: true,
+    disablePastDays: false,
     disableSwipe: false,
     disableWeekend: false,
     disableDates: disableDates,

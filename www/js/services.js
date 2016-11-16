@@ -1,6 +1,30 @@
 //angular.module('starter.services', [])
 'Use Strict';
 angular.module('starter')
+.factory('myPopUps', function($ionicPopup) {
+  return{
+    missingFieldAlert: function(field_name){
+      var alertPopup = $ionicPopup.alert({
+        title: 'Error!',
+        template: 'You have to enter '+field_name+'!'
+      });
+
+      alertPopup.then(function(res) {
+        console.log('Thank you for not eating my delicious ice cream cone');
+      });
+    },
+    alertMessage: function(title,message){
+      var alertPopup = $ionicPopup.alert({
+        title: title,
+        template: message
+      });
+
+      alertPopup.then(function(res) {
+        console.log('Thank you for not eating my delicious ice cream cone');
+      });
+    }
+  };
+})
 .factory('News', function($window,$firebaseObject,$firebaseArray) {
  var news = firebase.database().ref("News");
  var news_array = $firebaseArray(news);

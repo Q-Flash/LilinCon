@@ -9,14 +9,11 @@ angular.module('starter')
     angular.forEach(playerInfo, function (value, key){
       var displayPlayerInfo = value;
       var temp_player = {
-        unique_key: value.key,
         player_id: displayPlayerInfo.player_id,
         player_fname: displayPlayerInfo.player_fname,
         player_lname: displayPlayerInfo.player_lname,
-        player_prole: displayPlayerInfo.player_prole,
-        player_srole: displayPlayerInfo.player_srole,
+        player_role: displayPlayerInfo.player_role
       };
-      console.log("unique id:"+ playerInfo.key);
       player_details_for_table.push(temp_player);
     })
   })
@@ -163,7 +160,7 @@ angular.module('starter')
     }
   })
 })
-.controller('AdminRosterCtrl', function($ionicPopup,$state,$scope,$firebaseObject,$firebaseArray) {
+.controller('AdminRosterCtrl', function(myPopUps,$ionicPopup,$state,$scope,$firebaseObject,$firebaseArray) {
   var players = firebase.database().ref("Players");
   var players_array = $firebaseArray(players);
   var player_details_for_table = [];
@@ -171,12 +168,10 @@ angular.module('starter')
     angular.forEach(playerInfo, function (value, key){
       var displayPlayerInfo = value;
       var temp_player = {
-        unique_key: value.key,
         player_id: displayPlayerInfo.player_id,
         player_fname: displayPlayerInfo.player_fname,
         player_lname: displayPlayerInfo.player_lname,
-        player_prole: displayPlayerInfo.player_prole,
-        player_srole: displayPlayerInfo.player_srole,
+        player_role: displayPlayerInfo.player_role,
       };
       player_details_for_table.push(temp_player);
     })
@@ -209,7 +204,7 @@ angular.module('starter')
     firebase.database().ref(path).remove()
       .then(function() {
         console.log("Remove succeeded. 100");
-        alert('Delete Successful');
+        myPopUps.alertMessage("Success","Player data deleted successfully!");
         $state.go("news");
       })
       .catch(function(error) {
