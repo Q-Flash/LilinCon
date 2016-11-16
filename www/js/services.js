@@ -22,7 +22,26 @@ angular.module('starter')
       alertPopup.then(function(res) {
         console.log('Thank you for not eating my delicious ice cream cone');
       });
-    }
+    },
+    confirmChoice: function(title,message) {
+      var value;
+      var confirmPopup = $ionicPopup.confirm({
+       title: title,
+       template: message
+     });
+
+     confirmPopup.then(function(res) {
+       if(res) {
+         value = true;
+       } else {
+         console.log('You are not sure');
+         value = false;
+       }
+       console.log("Value: "+value);
+       return value;
+     });
+
+   }
   };
 })
 .factory('News', function($window,$firebaseObject,$firebaseArray) {

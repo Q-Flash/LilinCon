@@ -1,5 +1,5 @@
 'Use Strict';
-angular.module('starter').controller('calendarCtrl', function ($filter,$ionicPopup,$scope,$firebaseObject,$firebaseArray) {
+angular.module('starter').controller('adminEventsController', function (myPopUps,$filter,$state,$ionicPopup,$scope,$firebaseObject,$firebaseArray) {
   var events = firebase.database().ref("Events");
   var event_array = $firebaseArray(events);
   var eventHighlights = [];
@@ -114,8 +114,8 @@ angular.module('starter').controller('calendarCtrl', function ($filter,$ionicPop
       $scope.eventSelect = null;
       console.log("Value: "+value);
       for(var z=0; z <eventHighlights.length; z++){
-        console.log("Highlight: "+eventHighlights[z].date);
-        console.log("Value    : "+value);
+        //console.log("Highlight: "+eventHighlights[z].date);
+        //console.log("Value    : "+value);
         if($filter('date')(eventHighlights[z].date) == $filter('date')(value)){
           $scope.showEvent = true;
           $scope.eventSelect = eventPresent[z];
@@ -126,5 +126,54 @@ angular.module('starter').controller('calendarCtrl', function ($filter,$ionicPop
         // your code
     }
   };
-  
+  $scope.deleteEvent = function(select){
+    var teh_key;
+    firebase.database().ref("Events")
+    .orderByChild("event_id")
+    .equalTo(select.event_id)
+    .once("value", function (snapshot) {
+      var key;
+      snapshot.forEach(function (childSnapshot) {
+        key = childSnapshot.key;
+        return true; // Cancel further enumeration.
+      });
+
+      if (key) {
+        teh_key = key;
+        console.log("Found user: " + key);
+      } else {
+        console.log("User not found.");
+      }
+    });
+    var path = "Events/" + teh_key;
+    console.log(path);
+    firebase.database().ref(path).remove()
+      .then(function() {
+        console.log("Remove succeeded. 100");
+        myPopUps.alertMessage("Success","Event data deleted successfully!");
+        $state.go("news");
+      })
+      .catch(function(error) {
+        console.log("Remove failed: " + error.message);
+      });
+  };
+  $scope.confirmDeleteEvent = function(selected_event) {
+    if(selected_event == null){
+      myPopUps.alertMessage("Whoops!","There is no event on this date!");
+      console.log("Cannot delete empty object");
+      return;
+    }
+    var confirmPopup = $ionicPopup.confirm({
+     title: 'Whoa there!',
+     template: 'Are you sure you want to remove this event from the calendar?'
+   });
+
+   confirmPopup.then(function(res) {
+     if(res) {
+       $scope.deleteEvent(selected_event);
+     } else {
+       console.log('You are not sure');
+     }
+   });
+ };
 })

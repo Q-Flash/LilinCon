@@ -20,7 +20,7 @@ angular.module('starter')
   $scope.player_details = player_details_for_table;
 })
 
-.controller('scheduleController', function($filter,$scope,$state,$firebaseObject,$firebaseArray){
+.controller('scheduleController', function(myPopUps,$filter,$scope,$state,$firebaseObject,$firebaseArray){
   var plans = firebase.database().ref("Events");
   var plans_array= $firebaseArray(plans);
   var selectDate;
@@ -132,14 +132,33 @@ angular.module('starter')
     var nextEventID = checkNum+1;
     console.log("Next News ID: "+nextEventID);
     $scope.doSubmitEvent = function(eventSubmit){
+      if(eventSubmit.eventTitle == "" || eventSubmit.eventTitle == null){
+        myPopUps.alertMessage("Error!","Looks like you forgot to enter a title!");
+        return;
+      } else if(eventSubmit.eventDetail == "" || eventSubmit.eventDetail == null){
+        myPopUps.alertMessage("Error!","Looks like you forgot to enter details!");
+        return;
+      } else if(eventSubmit.eventVenue == "" || eventSubmit.eventVenue == null){
+        myPopUps.alertMessage("Error!","Looks like you forgot to enter a venue!");
+        return;
+      } else if(eventSubmit.eventTime == "" || eventSubmit.eventTime == null){
+        myPopUps.alertMessage("Error!","Looks like you forgot to enter a time!");
+        return;
+      }else if(selectDate == "" || selectDate == null){
+        myPopUps.alertMessage("Error!","Looks like you forgot to choose a date!");
+        return;
+      }
+
       var currDate = new Date();
       console.log(eventSubmit);
       currDate = $filter('date')(currDate);
-
+/*
       if(selectDate == $filter('date')(currDate)){
-        //error message
-        return;
-      }
+        if(!myPopUps.confirmChoice("Warning!","You currently have today's date selected. Are you user you want to use this date?")){
+          return;
+        }
+        console.log("Hmm");
+      } */
       var eventData = {
         event_id: nextEventID,
         event_title: eventSubmit.eventTitle,
@@ -154,7 +173,7 @@ angular.module('starter')
       events.push(eventData);
       console.log("Push successful");
 
-      alert('Message Added');
+      myPopUps.alertMessage("Success","Message addeds successfully!");
       $state.go("calendar");
 
     }
@@ -227,7 +246,7 @@ angular.module('starter')
  };
 })
 
-.controller('NewsCtrl', function($ionicPopup,$state,$scope,$firebaseObject,$firebaseArray) {
+.controller('NewsCtrl', function(myPopUps,$ionicPopup,$state,$scope,$firebaseObject,$firebaseArray) {
   firebase.auth().onAuthStateChanged(function(user) {
     if (user.email == "mubarakdcricketer@hotmail.com") {
       $scope.ans= false;
@@ -239,25 +258,57 @@ angular.module('starter')
     return $scope.ans;
   }
 
-  $scope.noAccessToManagerTab = function() {
-   var alertPopup = $ionicPopup.alert({
-     title: 'Stop!',
-     template: 'You don\'t have access to this tab. You hold no power here!'
+  $scope.confirmChoice = function(selected_news){
+    var confirmPopup = $ionicPopup.confirm({
+     title: 'WARNING!',
+     template: 'Are you sure you want to delete this message?'
    });
 
-   alertPopup.then(function(res) {
-     console.log('GG 3Ez');
+   confirmPopup.then(function(res) {
+     if(res) {
+       var teh_key;
+       firebase.database().ref("News")
+       .orderByChild("news_id")
+       .equalTo(selected_news.news_id)
+       .once("value", function (snapshot) {
+         var key;
+         snapshot.forEach(function (childSnapshot) {
+           key = childSnapshot.key;
+           return true; // Cancel further enumeration.
+         });
+
+         if (key) {
+           teh_key = key;
+           console.log("Found user: " + key);
+         } else {
+           console.log("User not found.");
+         }
+       });
+       var path = "News/" + teh_key;
+       console.log(path);
+       firebase.database().ref(path).remove()
+         .then(function() {
+           console.log("Remove succeeded. 100");
+           myPopUps.alertMessage("Success","News item deleted successfully!");
+           news_details_for_table.splice(news_details_for_table.indexOf(selected_news),1);
+           $state.go("news");
+         })
+         .catch(function(error) {
+           console.log("Remove failed: " + error.message);
+         });
+     } else {
+       console.log('You are not sure');
+     }
    });
- }
-  $scope.clickMTab = function(){
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user.email == "mubarakdcricketer@hotmail.com") {
-        $state.go("manager");
-      } else {
-        $scope.noAccessToManagerTab();
-      }
-    });
   }
+  $scope.onSwipeNews = function(thing){
+    if($scope.ans){
+      return;
+    } else {
+      $scope.confirmChoice(thing);
+    }
+  }
+
   var news = firebase.database().ref("News");
   var news_array = $firebaseArray(news);
   var news_details_for_table = [];
@@ -272,7 +323,9 @@ angular.module('starter')
       };
       news_details_for_table.push(temp_news);
     })
+    news_details_for_table.reverse();
   })
+
   //news_details_for_table.forEach()
   $scope.news = news_details_for_table;
 

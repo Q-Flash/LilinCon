@@ -128,6 +128,11 @@ angular.module('starter', ['ionic','firebase','onezone-datepicker','starter.conf
       templateUrl: 'templates/scheduler.html',
       controller:'scheduleController'
   })
+  .state('adminEvents', {
+    url: '/adminEvents',
+      templateUrl: 'templates/adminEvents.html',
+      controller:'adminEventsController'
+  })
   .state('health', {
     url: '/health',
       templateUrl: 'templates/health.html',

@@ -1,5 +1,5 @@
 'Use Strict';
-angular.module('starter').controller('reportController', function ($filter,$window,$firebaseArray,$scope, $state, $firebaseObject) {
+angular.module('starter').controller('reportController', function (myPopUps,$filter,$window,$firebaseArray,$scope, $state, $firebaseObject) {
   var news = firebase.database().ref("News");
   var news_array = $firebaseArray(news);
   var news_details_for_table = [];
@@ -27,6 +27,13 @@ angular.module('starter').controller('reportController', function ($filter,$wind
     nextNewsID = checkNum+1;
     console.log("Next News ID: "+nextNewsID);
     $scope.doSubmitNews = function(newSubmit){
+      if(newSubmit.newsTitle == "" || newSubmit.newsTitle == null){
+        myPopUps.alertMessage("Error!","Looks like you forgot to enter a title!");
+        return;
+      } else if(newSubmit.newsDetail == "" || newSubmit.newsDetail == null){
+        myPopUps.alertMessage("Error!","Looks like you forgot to enter details!");
+        return;
+      }
       var currDate = new Date();
       console.log(newSubmit);
       currDate = $filter('date')(currDate);

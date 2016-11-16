@@ -2,7 +2,7 @@
   <div class = "red_bg">
   <ion-content class="padding">
     <br><br><br>
-    <div class="list card" ng-repeat="item in news" type="item-text-wrap">
+    <div class="list card" on-hold="onSwipeNews(item)" ng-repeat="item in news" type="item-text-wrap">
       <a href="#/news/{{item.news_id}}" class="item item-icon-left" type="item-text-wrap">
 
         <div class="text-left" type="item-text-wrap"><strong>{{item.news_title}}</strong></div>
@@ -11,11 +11,6 @@
       </a>
     </div>
 
-<div class="text-center">
-  <button class="button button-outline button-block button-assertive">
-    Show More
-  </button>
-</div>
 </div>
 
   </ion-content>
