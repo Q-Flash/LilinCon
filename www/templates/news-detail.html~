@@ -6,8 +6,8 @@
       <h1>{{news.news_title}}</h1>
     </div>
     <br>
-    <p> {{news.news_message}}</p>
-    <div class = "text-right">
+    <p class= "stable"> {{news.news_message}}</p>
+    <div class = "text-right stable">
       <p>Date added: {{news.news_time}}</p>
     </div>
     </div>

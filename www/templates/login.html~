@@ -28,7 +28,7 @@
   -->
   
 	  <button  type = "submit" class="button button-clear button-stable" ui-sref="signup">Signup</button>
-		<button type="submit" class="button button-clear button-stable" ui-sref="reset">Forgot Password</button>
+		<button type="submit" class="button button-clear button-light" ui-sref="reset">Forgot Password</button>
 
 
   </ion-content>

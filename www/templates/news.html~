@@ -1,0 +1,43 @@
+<ion-view hide-back-button="true" view-title="News">
+  <div class = "red_bg">
+  <ion-content class="padding">
+    <br><br><br>
+    <div class="list card" on-hold="onSwipeNews(item)" ng-repeat="item in news" type="item-text-wrap">
+      <a href="#/news/{{item.news_id}}" class="item item-icon-left" type="item-text-wrap">
+
+        <div class="text-left stable" type="item-text-wrap"><strong>{{item.news_title}}</strong></div>
+        <div class = "text-right stable">{{item.news_time}}</div>
+
+      </a>
+    </div>
+
+</div>
+
+  </ion-content>
+  <ion-tabs class="tabs-icon-top tabs-color-active-assertive">
+    <ion-tab title="News" icon-off="ion-ios-home-outline" icon-on="ion-ios-home-outline" href="#/news">
+      <ion-nav-view name="news"></ion-nav-view>
+    </ion-tab>
+
+    <ion-tab title="Calendar" icon-off="ion-calendar" icon-on="ion-calendar" href="#/calendar">
+      <ion-nav-view name="calendar"></ion-nav-view>
+    </ion-tab>
+
+    <ion-tab title="Roster" icon-off="ion-clipboard" icon-on="ion-clipboard" href="#/roster">
+      <ion-nav-view name="roster"></ion-nav-view>
+    </ion-tab>
+
+    <ion-tab title="Manager" hidden="{{hideManagerTab()}}"
+     icon-off="ion-pinpoint" icon-on="ion-pinpoint" href="#/manager">
+      <!--<ion-nav-view name="manager"></ion-nav-view> -->
+    </ion-tab>
+
+    <div ng-controller="appController">
+      <ion-tab title="Logout" ng-click="doLogout()" icon-off="ion-log-out" icon-on="ion-log-out">
+        <ion-nav-view name="logout"></ion-nav-view>
+      </ion-tab>
+    </div>
+  </ion-tabs>
+  </div>
+
+</ion-view>
