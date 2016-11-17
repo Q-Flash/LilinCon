@@ -9,8 +9,8 @@
       <div class="card">
 
         <div class="item item-text-wrap">
-          <p><a href="#/scheduler" ><button class="button button-balanced icon-left ion-plus">Add New Event</button></a></p>
-          <p><a ><button ng-click="confirmDeleteEvent(eventSelect)" class="button button-balanced icon-left ion-minus">Delete This Event</button></a></p>
+          <p><a href="#/scheduler" ><button class="button icon-left ion-plus">Add New Event</button></a></p>
+          <p><a ><button ng-click="confirmDeleteEvent(eventSelect)" class="button icon-left ion-minus">Delete This Event</button></a></p>
           <div class="text-center"><h2>Events</h2></div>
           <p><strong>Title:</strong> {{eventSelect.event_title}}</p>
           <p><strong>Venue:</strong> {{eventSelect.event_venue}}</p>

@@ -11,7 +11,7 @@
               <div class="list">
 
                 <label class="item item-input item-stacked-label">
-          		    <span class="input-label">Title</span>
+          		    <span class="input-label stable">Title</span>
           		    <input type="text" ng-model="$parent.eventSubmit.eventTitle" id="title" placeholder="Title">
           		  </label>
 
@@ -33,7 +33,7 @@
               </div>
 
               <div class="padding">
-                <button type="submit" class="button button-outline button-block button-stable">Submit</button>
+                <button type="submit" class="button button-block button-balanced">Submit</button>
               </div>
           </form>
 

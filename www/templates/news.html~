@@ -5,8 +5,8 @@
     <div class="list card" on-hold="onSwipeNews(item)" ng-repeat="item in news" type="item-text-wrap">
       <a href="#/news/{{item.news_id}}" class="item item-icon-left" type="item-text-wrap">
 
-        <div class="text-left stable" type="item-text-wrap"><strong>{{item.news_title}}</strong></div>
-        <div class = "text-right stable">{{item.news_time}}</div>
+        <div class="text-left" type="item-text-wrap"><strong>{{item.news_title}}</strong></div>
+        <div class = "text-right">{{item.news_time}}</div>
 
       </a>
     </div>

@@ -5,8 +5,8 @@
 	<form name="form_reset" ng-submit="doResetemail(userReset)" novalidate>
 	  	<div class="list">
 
-		  <label class="item item-input item-floating-label">
-		    <span class="input-label">Username</span>
+		  <label class="item item-input item-stacked-label">
+		    <span class="input-label stable">Username</span>
 		    <input type="text" ng-model="$parent.userReset.rusername" id="ruser_name" placeholder="Username">
 		  </label>
 

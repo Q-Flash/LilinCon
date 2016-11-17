@@ -10,7 +10,7 @@
           		  </label>
 
                 <label class="item item-input item-stacked-label">
-          		    <span class="input-label">Last Name</span>
+          		    <span class="input-label stable">Last Name</span>
           		    <input type="text" ng-model="$parent.playerSubmit.lname" id="lname" placeholder="Last Name">
           		  </label>
                 &nbsp;&nbsp;

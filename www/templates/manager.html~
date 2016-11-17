@@ -4,7 +4,7 @@
           <br>
           <p><a href="#/adminEvents" ><button class="button button-balanced icon-left ion-bookmark">Manage Events</button></a></p>
           <p><a href="#/adminRoster" ><button class="button button-balanced icon-left ion-clipboard">Edit Roster</button></a></p>
-          <p><a href="#/report" ><button class="button button-balanced icon-left ion-flag">Update News</button></a></p>
+          <p><a href="#/report" ><button class="button-balanced icon-left ion-flag">Update News</button></a></p>
           <br><br>
 <!--
           <p><a href="#/news" ><button class="button button-clear button-assertive icon-left ion-home">Home</button></a></p>

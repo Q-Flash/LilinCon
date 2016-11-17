@@ -29,7 +29,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="player in player_details">
-                <td><a class="button  button-balanced ion-minus" ng-click = "confirmDelete(player)"></a></td>
+                <td><a class="button ion-minus" ng-click = "confirmDelete(player)"></a></td>
                 <td>{{player.player_fname}} {{player.player_lname}}</td>
                 <!-- <td>{{player.number}}</td>  -->
                 <td>{{player.player_role}}</td>
