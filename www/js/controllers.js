@@ -331,9 +331,6 @@ angular.module('starter')
 
 })
 
-.controller('healthController', function() {
-
-})
 .controller('managerController', function($scope) {
 
 })
@@ -367,9 +364,3 @@ angular.module('starter')
   //$scope.chat = Chats.get($stateParams.chatId)
   //$scope.news = news_details_for_table[];
 })
-
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
-});

@@ -40,13 +40,6 @@ angular.module('starter', ['ionic','firebase','onezone-datepicker','starter.conf
     $ionicConfigProvider.views.maxCache(0);
     $stateProvider
 
-    .state('app', {
-      url: '/app',
-      abstract: true,
-      templateUrl: 'templates/menu.html',
-      controller: 'appController'
-    })
-
     .state('login', {
       url: '/login',
       templateUrl: "templates/login.html",
@@ -63,26 +56,6 @@ angular.module('starter', ['ionic','firebase','onezone-datepicker','starter.conf
       url: '/reset',
       templateUrl: "templates/resetemail.html",
       controller: "resetController"
-    })
-
-    .state('intro', {
-      url: '/intro',
-      views: {
-        'menuContent': {
-          templateUrl: "templates/intro.html",
-          controller: "introController"
-        }
-      }
-    })
-
-    .state('app.dashboard', {
-      url: '/app/dashboard',
-      views: {
-        'menuContent': {
-          templateUrl: "templates/dashboard.html",
-          controller: "dashboardController"
-        }
-      }
     })
 
   .state('adminRoster', {
@@ -132,21 +105,6 @@ angular.module('starter', ['ionic','firebase','onezone-datepicker','starter.conf
     url: '/adminEvents',
       templateUrl: 'templates/adminEvents.html',
       controller:'adminEventsController'
-  })
-  .state('health', {
-    url: '/health',
-      templateUrl: 'templates/health.html',
-      controller:'healthController'
-  })
-  .state('edithealth', {
-    url: '/edithealth',
-      templateUrl: 'templates/edithealth2.html',
-      controller:'edithealthCtrl'
-  })
-  .state('budget', {
-    url: '/budget',
-      templateUrl: 'templates/budget.html',
-      controller:'budgetController'
   })
 
   .state('news-detail', {

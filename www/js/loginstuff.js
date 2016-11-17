@@ -1,9 +1,19 @@
 'Use Strict';
 angular.module('starter')
-.controller('loginController',['$scope', '$firebaseArray', 'CONFIG', '$document', '$state', function($scope, $firebaseArray, CONFIG, $document, $state) {
+.controller('loginController',['$scope','$location','$ionicPlatform', '$ionicHistory','$firebaseArray', 'CONFIG', '$document', '$state', function($scope,$location,$ionicPlatform,$ionicHistory, $firebaseArray, CONFIG, $document, $state) {
 
   var isLoggedIn = false;
-
+  $ionicHistory.clearCache();
+  $ionicPlatform.registerBackButtonAction(function() {
+//var path = $location.path()
+  if ($location.path() === "/login" || $location.path() === "login") {
+    navigator.app.exitApp();
+  }
+  else {
+    $ionicHistory.goBack();
+    //navigator.app.goBack();
+  }
+}, 100);
   // Perform the login action when the user submits the login form
   $scope.userEnter = function(){
     $state.go("news");
@@ -95,7 +105,7 @@ angular.module('starter')
 
 }])
 
-.controller('appController',['$scope', '$firebaseArray', 'CONFIG', '$document', '$state', function($scope, $firebaseArray, CONFIG, $document, $state) {
+.controller('appController',['$scope', '$ionicHistory','$firebaseArray', 'CONFIG', '$document', '$state', function($scope, $ionicHistory,$firebaseArray, CONFIG, $document, $state) {
   var isLoggedIn;
 
   firebase.auth().onAuthStateChanged(function(user) {
@@ -116,6 +126,7 @@ angular.module('starter')
       firebase.auth().signOut().then(function() {
         // Sign-out successful.
         console.log("Logout successful");
+        $ionicHistory.clearCache();
         $state.go("login");
 
       }, function(error) {
